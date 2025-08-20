@@ -18,6 +18,7 @@ const uploadRouter = require("./routes/uploadRoute");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const cors = require("cors");
+const path = require("path");
 
 dbConnect();
 app.use(morgan("dev"));
@@ -36,8 +37,25 @@ app.use("/api/color", colorRouter);
 app.use("/api/enquiry", enqRouter);
 app.use("/api/upload", uploadRouter);
 
-app.use(notFound);
-app.use(errorHandler);
+// Serve Frontend static files
+app.use(express.static(path.join(__dirname, '../Frontend/build')));
+
+// Serve Admin static files
+app.use('/admin', express.static(path.join(__dirname, '../Admin/build')));
+
+// API routes error handling
+app.use('/api/*', notFound);
+app.use('/api/*', errorHandler);
+
+// Frontend routes
+app.get('/*', (req, res) => {
+  if (req.url.startsWith('/admin')) {
+    res.sendFile(path.join(__dirname, '../Admin/build/index.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../Frontend/build/index.html'));
+  }
+});
+
 app.listen(PORT, () => {
-  console.log(`Server is running  at PORT ${PORT}`);
+  console.log(`Server is running at PORT ${PORT}`);
 });

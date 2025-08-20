@@ -1,0 +1,38 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "routes": [
+    {
+      "src": "/admin/(.*)",
+      "dest": "/Admin/build/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/Backend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Frontend/build/$1"
+    }
+  ],
+  "builds": [
+    {
+      "src": "Backend/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "Frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "Admin/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ]
+}
