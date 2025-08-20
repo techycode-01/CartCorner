@@ -2,7 +2,7 @@ services:
   - type: web
     name: cartcorner-backend
     env: node
-    buildCommand: chmod +x ./build.sh && ./build.sh
+    buildCommand: chmod +x ./render-build.sh && ./render-build.sh
     startCommand: node index.js
     nodeVersion: 16.20.0
     envVars:
@@ -10,3 +10,5 @@ services:
         value: 16.20.0
       - key: SHARP_IGNORE_GLOBAL_LIBVIPS
         value: "1"
+      - key: SHARP_DISTRO
+        value: "alpine"
