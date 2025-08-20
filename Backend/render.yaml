@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cartcorner-backend
+    env: node
+    buildCommand: npm install && npm rebuild bcrypt --build-from-source
+    startCommand: node index.js
+    nodeVersion: 16.20.0
+    envVars:
+      - key: NODE_VERSION
+        value: 16.20.0

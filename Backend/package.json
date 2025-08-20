@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Backend server for CartCorner e-commerce platform",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "build": "npm install && npm rebuild bcrypt --build-from-source"
   },
   "author": "",
   "license": "ISC",
