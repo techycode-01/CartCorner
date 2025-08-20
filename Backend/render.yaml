@@ -2,9 +2,11 @@ services:
   - type: web
     name: cartcorner-backend
     env: node
-    buildCommand: npm install
+    buildCommand: chmod +x ./build.sh && ./build.sh
     startCommand: node index.js
     nodeVersion: 16.20.0
     envVars:
       - key: NODE_VERSION
         value: 16.20.0
+      - key: SHARP_IGNORE_GLOBAL_LIBVIPS
+        value: "1"
