@@ -2,14 +2,14 @@ import axios from "axios";
 import { base_url, config } from "../../utils/axiosConfig";
 
 const register = async (userData) => {
-  const response = await axios.post(`${base_url}user/register`, userData);
+  const response = await axios.post(`${base_url}/api/user/register`, userData);
   if (response.data) {
     return response.data;
   }
 };
 
 const login = async (userData) => {
-  const response = await axios.post(`${base_url}user/login`, userData);
+  const response = await axios.post(`${base_url}/api/user/login`, userData);
 
   if (response.data) {
     localStorage.setItem("customer", JSON.stringify(response.data));
@@ -18,21 +18,21 @@ const login = async (userData) => {
 };
 
 const getUserWislist = async () => {
-  const response = await axios.get(`${base_url}user/wishlist`, config);
+  const response = await axios.get(`${base_url}/api/user/wishlist`, config);
   if (response.data) {
     return response.data;
   }
 };
 
 const addToCart = async (cartData) => {
-  const response = await axios.post(`${base_url}user/cart`, cartData, config);
+  const response = await axios.post(`${base_url}/api/user/cart`, cartData, config);
   if (response.data) {
     return response.data;
   }
 };
 
 const getCart = async (data) => {
-  const response = await axios.get(`${base_url}user/cart`, data);
+  const response = await axios.get(`${base_url}/api/user/cart`, data);
   if (response.data) {
     return response.data;
   }
@@ -71,7 +71,7 @@ const createOrder = async (orderDetail) => {
 };
 
 const getUserOrders = async () => {
-  const response = await axios.get(`${base_url}user/getmyorders`, config);
+  const response = await axios.get(`${base_url}/api/user/getmyorders`, config);
 
   if (response.data) {
     return response.data;
@@ -116,7 +116,7 @@ const resetPass = async (data) => {
 };
 
 const emptyCart = async (data) => {
-  const response = await axios.delete(`${base_url}user/empty-cart`, data);
+  const response = await axios.delete(`${base_url}/api/user/empty-cart`, data);
 
   if (response.data) {
     return response.data;
