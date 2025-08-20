@@ -1,6 +1,20 @@
 {
-  "version": 2,
-  "buildCommand": false,
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "routes": [
+    {
+      "src": "/admin/(.*)",
+      "dest": "/Admin/build/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/Backend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Frontend/build/$1"
+    }
+  ],
   "builds": [
     {
       "src": "Backend/index.js",
@@ -10,38 +24,15 @@
       "src": "Frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build",
-        "buildCommand": "cd Frontend && npm install && npm run build"
+        "distDir": "build"
       }
     },
     {
       "src": "Admin/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build",
-        "buildCommand": "cd Admin && npm install && npm run build"
+        "distDir": "build"
       }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "Backend/index.js"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/admin",
-      "dest": "Admin/build/index.html"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "Admin/build/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "Frontend/build/index.html"
     }
   ]
 }
