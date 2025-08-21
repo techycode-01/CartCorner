@@ -16,13 +16,7 @@ let schema = yup.object().shape({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const authState = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (authState.user !== null && authState.isSuccess) {
-      navigate("/dashboard");
-    }
-  }, [authState, navigate]);
+  const { auth: { user, isError, isSuccess, isLoading, message } } = useSelector((state) => state);
 
   const formik = useFormik({
     initialValues: {
@@ -34,9 +28,6 @@ const Login = () => {
       dispatch(login(values));
     },
   });
-  const authState = useSelector((state) => state);
-
-  const { user, isError, isSuccess, isLoading, message } = authState.auth;
 
   useEffect(() => {
     if (isSuccess) {
