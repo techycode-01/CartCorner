@@ -49,7 +49,15 @@ const removeProductFromCart = async (data) => {
   }
 };
 
-
+const updateProductFromCart = async (cartDetail) => {
+  const response = await axios.delete(
+    `${base_url}/api/user/update-product-cart/${cartDetail.cartItemId}/${cartDetail.quantity}/`,
+    config
+  );
+  if (response.data) {
+    return response.data;
+  }
+};
 
 const createOrder = async (orderDetail) => {
   const response = await axios.post(
@@ -57,6 +65,14 @@ const createOrder = async (orderDetail) => {
     orderDetail,
     config
   );
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const getUserOrders = async () => {
+  const response = await axios.get(`${base_url}/api/user/getmyorders/`, config);
+
   if (response.data) {
     return response.data;
   }
@@ -98,6 +114,10 @@ const resetPass = async (data) => {
     return response.data;
   }
 };
+
+
+
+
 
 
 

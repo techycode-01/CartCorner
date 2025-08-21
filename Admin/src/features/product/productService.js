@@ -3,25 +3,25 @@ import { config } from "../../utils/axiosconfig";
 import { base_url } from "../../utils/baseUrl";
 
 const getProducts = async () => {
-  const response = await axios.get(`${base_url}/product/`);
+  const response = await axios.get(`${base_url}/api/product/`);
 
   return response.data;
 };
 const createProduct = async (product) => {
-  const response = await axios.post(`${base_url}/product/`, product, config);
+  const response = await axios.post(`${base_url}/api/product/`, product, config);
 
   return response.data;
 };
 
 const getProduct = async (id) => {
-  const response = await axios.get(`${base_url}/product/${id}`, config);
+  const response = await axios.get(`${base_url}/api/product/${id}/`, config);
 
   return response.data;
 };
 
 const updateProduct = async (product) => {
   const response = await axios.put(
-    `${base_url}/product/${product.id}`,
+    `${base_url}/api/product/${product.id}/`,
     {
       title: product.productData.title,
       description: product.productData.description,
@@ -40,7 +40,7 @@ const updateProduct = async (product) => {
 };
 
 const deleteproduct = async (id) => {
-  const response = await axios.delete(`${base_url}/product/${id}`, config);
+  const response = await axios.delete(`${base_url}/api/product/${id}/`, config);
 
   return response.data;
 };
