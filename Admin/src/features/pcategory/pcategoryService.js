@@ -14,20 +14,20 @@ const createCategory = async (category) => {
 };
 
 const getProductCategory = async (id) => {
-  const response = await axios.get(`${base_url}/category/${id}`, config);
+  const response = await axios.get(`${base_url}/category/${id}/`, config);
 
   return response.data;
 };
 
 const deleteProductCategory = async (id) => {
-  const response = await axios.delete(`${base_url}/category/${id}`, config);
+  const response = await axios.delete(`${base_url}/category/${id}/`, config);
 
   return response.data;
 };
 const updateProductCategory = async (category) => {
   console.log(category);
   const response = await axios.put(
-    `${base_url}/category/${category.id}`,
+    `${base_url}/category/${category.id}/`,
     { title: category.pCatData.title },
     config
   );
