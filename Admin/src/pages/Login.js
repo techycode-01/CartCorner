@@ -16,6 +16,14 @@ let schema = yup.object().shape({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authState = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (authState.user !== null && authState.isSuccess) {
+      navigate("/dashboard");
+    }
+  }, [authState, navigate]);
+
   const formik = useFormik({
     initialValues: {
       email: "",
