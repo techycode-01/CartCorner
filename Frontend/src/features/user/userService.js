@@ -40,10 +40,68 @@ const getCart = async (data) => {
 
 const removeProductFromCart = async (data) => {
   const response = await axios.delete(
-    `${base_url}/user/delete-product-cart/${data.id}/`,
+    `${base_url}/api/user/delete-product-cart/${data.id}/`,
 
     data.config2
   );
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const updateProductFromCart = async (cartDetail) => {
+  const response = await axios.delete(
+    `${base_url}/api/user/update-product-cart/${cartDetail.cartItemId}/${cartDetail.quantity}/`,
+    config
+  );
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const createOrder = async (orderDetail) => {
+  const response = await axios.post(
+    `${base_url}/api/user/cart/create-order/`,
+    orderDetail,
+    config
+  );
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const updateUser = async (data) => {
+  const response = await axios.put(
+    `${base_url}/api/user/edit-user/`,
+    data.data,
+    data.config2,
+    config
+  );
+
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const forgotPasswordToken = async (data) => {
+  const response = await axios.post(
+    `${base_url}/api/user/forgot-password-token/`,
+    data
+  );
+
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const resetPass = async (data) => {
+  const response = await axios.put(
+    `${base_url}/api/user/reset-password/${data.token}/`,
+    {
+      password: data?.password,
+    }
+  );
+
   if (response.data) {
     return response.data;
   }
