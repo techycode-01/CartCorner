@@ -16,7 +16,7 @@ const getEnquiry = async (id) => {
 };
 const udpateEnquiry = async (enq) => {
   const response = await axios.put(
-    `${base_url}enquiry/${enq.id}`,
+    `${base_url}/enquiry/${enq.id}`,
     { status: enq.enqData },
     config
   );

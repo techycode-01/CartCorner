@@ -40,7 +40,7 @@ const updateProduct = async (product) => {
 };
 
 const deleteproduct = async (id) => {
-  const response = await axios.delete(`${base_url}product/${id}`, config);
+  const response = await axios.delete(`${base_url}/product/${id}`, config);
 
   return response.data;
 };
